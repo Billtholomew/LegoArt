@@ -166,7 +166,7 @@ Vec3f getValue(Mat lookupTable, Vec3f oldColor)
 int main(int argc, const char** argv)
 {
 	Mat lookupTable = loadLookup();
-	Mat oim = imread("C:/Users/William/Desktop/LegoArt/pel.png");
+	Mat oim = imread("data/pel.png");
 	
 	oim.convertTo(oim, CV_8U);
 	cvtColor(oim, oim, CV_RGB2Lab);
@@ -191,8 +191,6 @@ int main(int argc, const char** argv)
 
 	for (int r = 0; r < oim.rows; r++) {
 		for (int c = 0; c < oim.cols; c++) {
-			if (r == 65 && c == 89)
-				std::cout << "BREAK TIME!" << std::endl;
 			Vec3b oldColor = oim.at<Vec3b>(Point(c, r));
 			Vec3b newColor = getValue(lookupTable, oldColor);
 			nim.at<Vec3b>(Point(c, r)) = newColor;
